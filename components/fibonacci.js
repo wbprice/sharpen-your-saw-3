@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React from "react";
+import {fibonacci} from './../lib/fibonacci'
 
 const Fibonacci = React.createClass({
   propTypes: {
@@ -7,19 +8,15 @@ const Fibonacci = React.createClass({
   },
 
   render: function () {
-    let twoBack = 0;
-    let oneBack = 0;
-    let current = 1;
     return (
       <div>
-        { _.times(this.props.length, (n) => {
-          twoBack = oneBack;
-          oneBack = current;
-          current = current + twoBack;
-          return (
-            <div key={n}>{current}</div>
-          );
-        })}
+        { 
+          fibonacci(this.props.length).map((current, index) => {
+            return (
+              <div key={index}>{current}</div>
+            )
+          })
+        }
       </div>
     );
   }
